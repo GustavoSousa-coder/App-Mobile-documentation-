@@ -1,0 +1,83 @@
+<!--
+Gera o Layout de configuração de toda a tela que
+configura o posicionamento tamanho e orientação do layout de toda a tela
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <!--
+    Cria um texto personalizado que se aplica na tela e
+    vai em cima do layout
+    -->
+    <TextView
+        android:id="@+id/question_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="24dp"
+        tools:text="@string/question_goiania" />
+
+    <!--
+    Gera um Layout Linear que se encaixa na tela,
+    além disso ele configura o posicionamento do conteúdo
+    que vem dentro do layout
+    -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!--
+        Gera um Button dentro do LinearLayout que segue suas configurações,
+        Tem id para identificação no código kotlin, configurações de alinhamento e
+        de visualização para o botão "Verdadeiro"
+        backgroundTint que
+        define a cor background do elemento do Button
+        -->
+        <Button
+            android:id="@+id/true_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/true_button"
+            android:backgroundTint="@color/black"/>
+
+        <!--
+        Gera um Button dentro do LinearLayout que segue suas configurações,
+        Tem id para identificação no código kotlin, configurações de alinhamento e
+        de visualização para o botão "Falso"
+        backgroundTint que
+        define a cor background do elemento do Button
+        -->
+        <Button
+            android:id="@+id/false_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/false_button"
+            android:backgroundTint="@color/black"/>
+
+        <!--
+        Fechamento do LinearLayout
+        -->
+    </LinearLayout>
+
+    <!--
+    Gera um Button "Próximo" que contém um drawable que serve para gerar elementos
+    personalizados para compor melhor a tela além disso contém um backgroundTint que
+    define a cor background do elemento do Button
+    -->
+    <Button
+        android:id="@+id/next_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/next_button"
+        android:backgroundTint="@color/black"
+        app:icon="@drawable/ic_arrow_right"
+        app:iconGravity="end"/>
+
+</LinearLayout>

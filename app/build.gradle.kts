@@ -86,6 +86,10 @@ android {
 // Dependências essenciais utilizadas pelo projeto
 dependencies {
 
+
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.androidx.activity.ktx)
+
     // Biblioteca AppCompat para compatibilidade de componentes Android
     implementation(libs.androidx.appcompat)
 

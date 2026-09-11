@@ -1,9 +1,10 @@
-package com.example.quizapp
+package com.example.quizapp.ui
 
 /*
 imports necessários para o funcionamento e uso de matodos
 */
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -12,6 +13,10 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import br.edu.ifgoiano.quizapp.R
 import br.edu.ifgoiano.quizapp.databinding.ActivityMainBinding
+import com.example.quizapp.data.QuizViewModel
+import androidx.activity.viewModels
+
+private const val TAG = "MainActivity"
 
 /*
 criação da classe MainActivity que compõe a tela activity_main além disso o AppCompatActivity()
@@ -22,23 +27,7 @@ class MainActivity : AppCompatActivity() {
     variável do tipo de dados selecionados responsável por acessar os componentes
     */
     private lateinit var binding: ActivityMainBinding
-
-    /*
-    Banco de questões que vão aparecer na tela a cada clique de confirmação de respostas
-    aqui ela já recebe a resposta padrão se é verdadeiro ou falso, que é verificado de acordo com a resposta
-    */
-    private val questionBank = listOf(
-        Question(R.string.question_goiania, true),
-        Question(R.string.question_araguaia, true),
-        Question(R.string.question_caldas, true),
-        Question(R.string.question_capital, false),
-        Question(R.string.question_pequi, false),
-        Question(R.string.question_chapada, true))
-
-    /*
-    variável indicativa da posição das perguntas
-    */
-    private var currentIndex = 0
+    private val quizViewModel : QuizViewModel by viewModels()
 
     /*
     função para renderizar a tela responsável em criar a tela, toda tela deve ter uma função onCreate
@@ -46,6 +35,9 @@ class MainActivity : AppCompatActivity() {
     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        Log.d(TAG, "onCreate called")
+
         /*
         Permite que o aplicativo utilize toda a área da tela
         como até componentes de regiões próximas
@@ -88,7 +80,7 @@ class MainActivity : AppCompatActivity() {
         e quando clicar verifica a resposta do usuário
         */
         binding.nextButton.setOnClickListener {
-            currentIndex = (currentIndex + 1) % questionBank.size
+           quizViewModel.moveToNext()
             updateQuestion()
         }
 
@@ -98,11 +90,46 @@ class MainActivity : AppCompatActivity() {
         updateQuestion()
     }
 
+    override fun onStart() {
+        super.onStart()
+        Log.d(TAG, "onStart called")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.d(TAG, "onResume called")
+
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.d(TAG, "onPause called")
+
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.d(TAG, "onStop called")
+
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.d(TAG, "onDestroy called")
+
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        Log.d(TAG, "onRestart called")
+
+    }
+
     /*
     função responsável por atualizar o texto da pergunta exibida na tela
     */
     private fun updateQuestion() {
-        val questionTextResId = questionBank[currentIndex].textResId
+        val questionTextResId = quizViewModel.currentQuestionText
         binding.questionTextView.setText(questionTextResId)
     }
 
@@ -113,7 +140,7 @@ class MainActivity : AppCompatActivity() {
     private fun checkAnswer(userAnswer: Boolean) {
 
         //capta a resposta correta
-        val correctAnswer = questionBank[currentIndex].answer
+        val correctAnswer = quizViewModel.currentQuestionAnswer
         //define a mensagem exibida ao usuário
         val messageResId = if (userAnswer == correctAnswer) {
             R.string.correct_toast

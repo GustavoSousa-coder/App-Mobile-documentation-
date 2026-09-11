@@ -14,7 +14,7 @@
         <!-- Configura a tela de inicialização do Aplicativo,
          além de configurar telas posteriores que podem ser inicializadas -->
         <activity
-            android:name="com.example.quizapp.MainActivity"
+            android:name="com.example.quizapp.ui.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -5,4 +5,5 @@ gera cores personalizadas para o app
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="red_warning">#8E0808</color>
 </resources>

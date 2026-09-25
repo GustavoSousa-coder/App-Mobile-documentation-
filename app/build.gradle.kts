@@ -98,6 +98,7 @@ dependencies {
 
     // Biblioteca Material Design com componentes de interface do Google
     implementation(libs.material)
+    implementation(libs.androidx.activity)
 
     // Biblioteca JUnit utilizada para criação de testes unitários
     testImplementation(libs.junit)

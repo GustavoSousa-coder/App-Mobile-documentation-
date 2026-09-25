@@ -3,6 +3,7 @@ package com.example.quizapp.ui
 /*
 imports necessários para o funcionamento e uso de matodos
 */
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -15,6 +16,7 @@ import br.edu.ifgoiano.quizapp.R
 import br.edu.ifgoiano.quizapp.databinding.ActivityMainBinding
 import com.example.quizapp.data.QuizViewModel
 import androidx.activity.viewModels
+import kotlin.jvm.java
 
 private const val TAG = "MainActivity"
 
@@ -82,6 +84,10 @@ class MainActivity : AppCompatActivity() {
         binding.nextButton.setOnClickListener {
            quizViewModel.moveToNext()
             updateQuestion()
+        }
+
+        binding.cheatButton.setOnClickListener {
+            startActivity(Intent(this, CheatActivity::class.java))
         }
 
         /*
